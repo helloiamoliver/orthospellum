@@ -63,6 +63,8 @@ checkbox4 = ttk.Checkbutton(root, text="Stage 4", variable=stage4)
 checkbox1.pack(pady=5)
 checkbox2.pack(pady=5)
 checkbox3.pack(pady=5)
+checkbox4.pack(pady=5)
+
 
 # Create the submit button
 submit_button = ttk.Button(root, text="Submit", command=generate_vocab)
