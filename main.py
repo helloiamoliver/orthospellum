@@ -14,6 +14,8 @@ def generate_vocab():
         vocab.append("Stage 2")
     if stage3.get():
         vocab.append("Stage 3")
+    if stage4.get():
+        vocab.append("Stage 4")
 
     random.shuffle(vocab)
     # You can replace the above line with the function you want to call
@@ -47,11 +49,15 @@ sv_ttk.use_light_theme()
 stage1 = tk.BooleanVar()
 stage2 = tk.BooleanVar()
 stage3 = tk.BooleanVar()
+stage4 = tk.BooleanVar()
+
 
 # Create the checkboxes
 checkbox1 = ttk.Checkbutton(root, text="Stage 1", variable=stage1)
 checkbox2 = ttk.Checkbutton(root, text="Stage 2", variable=stage2)
 checkbox3 = ttk.Checkbutton(root, text="Stage 3", variable=stage3)
+checkbox4 = ttk.Checkbutton(root, text="Stage 4", variable=stage4)
+
 
 # Pack the checkboxes into the window
 checkbox1.pack(pady=5)
