@@ -58,6 +58,11 @@ checkbox2 = ttk.Checkbutton(root, text="Stage 2", variable=stage2)
 checkbox3 = ttk.Checkbutton(root, text="Stage 3", variable=stage3)
 checkbox4 = ttk.Checkbutton(root, text="Stage 4", variable=stage4)
 
+header = tk.Label(root, text="Orthospellum", font=("Times New Roman", 24, 'bold'))
+header.pack(pady=(10, 0))
+
+subhead = tk.Label(root, text="A Latin Spelling Bee", font=("Times New Roman", 12))
+subhead.pack(pady=(2, 10))
 
 # Pack the checkboxes into the window
 checkbox1.pack(pady=5)
