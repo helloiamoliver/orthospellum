@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import ttk
 import sv_ttk
 import random
 
@@ -15,13 +15,25 @@ def generate_vocab():
     if stage3.get():
         vocab.append("Stage 3")
 
-    messagebox.showinfo("Selections", f"You selected: {', '.join(vocab)}")
     random.shuffle(vocab)
-    print(vocab)
     # You can replace the above line with the function you want to call
     # For example:
     # your_function(selections)
+    open_new_window(vocab)
 
+
+def open_new_window(selections):
+    # Create a new window
+    bee_window = tk.Toplevel(root)
+    bee_window.title("OrthoSpellum: Competition mode")
+    bee_window.geometry('900x600')
+
+    sv_ttk.use_light_theme()
+
+    # Display the selected options in the new window
+    ttk.Label(bee_window, text="You selected:").pack(pady=10)
+    for selection in selections:
+        ttk.Label(bee_window, text=selection).pack()
 
 # Create the main window
 root = tk.Tk()
