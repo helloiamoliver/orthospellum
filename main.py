@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import sv_ttk
 import random
 import webbrowser
@@ -22,8 +22,11 @@ def generate_vocab():
     if stage3.get():
         stage3Vocab = [['Latin31', 'English31'], ['Latin32', 'English32'], ['Latin33', 'English33']]
         vocab.extend(stage3Vocab)
-    random.shuffle(vocab)
-    open_new_window()
+    if not vocab:
+        messagebox.showwarning("Error", "You must choose at least one stage.")
+    else:
+        random.shuffle(vocab)
+        open_new_window()
 
 def getWord(latin_label, english_label, timer_label):
     if not timer_label.timer_started:
@@ -110,18 +113,15 @@ submit_button.pack(pady=10)
 def position_copyright_label():
     # Calculate the position relative to the root window size
     x_position = 10
-    y_position = root.winfo_height() - 40  # Adjusted vertical position to create space between labels
+    y_position = root.winfo_height() - 5  # Adjusted vertical position to create space between labels
     copyright_label.place(x=x_position, y=y_position, anchor='sw')
-    link.place(x=x_position, y=y_position+15, anchor='sw')
 
 # Initialize the root window
 
 # Create the copyright label and link widgets
-copyright_label = ttk.Label(root, text="Supplied by Kingswood School\n\n© Oliver Hewitt, 2024")
-link = ttk.Label(root, text="oliverhewitt.co.uk", font=('Helvetica', 15), foreground="blue", cursor="hand2")
+copyright_label = ttk.Label(root, text="Supplied by Kingswood School\n\n© Oliver Hewitt, 2024\noliverhewitt.co.uk")
 
 # Configure the link label to respond to mouse clicks
-link.bind("<Button-1>", lambda e: callback("http://oliverhewitt.co.uk"))
 
 # Call the function to position the copyright label initially
 position_copyright_label()
