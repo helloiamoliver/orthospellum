@@ -2,8 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 import sv_ttk
 import random
+import webbrowser
+from PIL import ImageTk, Image
 
 vocab = []
+
+def callback(url):
+   webbrowser.open_new_tab(url)
 
 def generate_vocab():
     global vocab
@@ -103,15 +108,27 @@ submit_button.pack(pady=10)
 
 # Create and position the copyright label at the bottom left
 def position_copyright_label():
-    copyright_label.place(x=10, y=root.winfo_height()-20, anchor='sw')
+    # Calculate the position relative to the root window size
+    x_position = 10
+    y_position = root.winfo_height() - 40  # Adjusted vertical position to create space between labels
+    copyright_label.place(x=x_position, y=y_position, anchor='sw')
+    link.place(x=x_position, y=y_position+15, anchor='sw')
 
-# Create the copyright label
-copyright_label = ttk.Label(root, text="© Oliver Hewitt, 2024\nSupplied by Kingswood School")
-# Call the function to position it initially
+# Initialize the root window
+
+# Create the copyright label and link widgets
+copyright_label = ttk.Label(root, text="Supplied by Kingswood School\n\n© Oliver Hewitt, 2024")
+link = ttk.Label(root, text="oliverhewitt.co.uk", font=('Helvetica', 15), foreground="blue", cursor="hand2")
+
+# Configure the link label to respond to mouse clicks
+link.bind("<Button-1>", lambda e: callback("http://oliverhewitt.co.uk"))
+
+# Call the function to position the copyright label initially
 position_copyright_label()
 
-# Bind the function to adjust the label when the window size changes
+# Bind the function to adjust the label positions when the window size changes
 root.bind('<Configure>', lambda e: position_copyright_label())
 
-# Start the Tkinter event loop
+# Start the main event loop
 root.mainloop()
+
